@@ -2,7 +2,7 @@
  	"manifestVersion": 1,
  	"id": "devops-extension-cflint",
  	"publisher": "JoshKnutsonExtensions",
- 	"version": "1.2.1",
+ 	"version": "1.3.0",
  	"name": "cflint code analysis",
  	"description": "Run cflint Static code analysis for CFML (a linter) as part of your build",
  	"public": true,
