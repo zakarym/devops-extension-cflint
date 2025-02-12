@@ -9,12 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -47,31 +47,31 @@ function run() {
             if (!taskDisplayName) {
                 taskDisplayName = "cflint Code Analysis";
             }
-            console.log("task display name: " + taskDisplayName);
+            console.log("task display name: ".concat(taskDisplayName));
             workingFolder = tl.getPathInput("workingFolder", false);
             if (!workingFolder) {
                 workingFolder = __dirname;
             }
-            console.log("working folder: " + workingFolder);
+            console.log("working folder: ".concat(workingFolder));
             tl.cd(workingFolder);
             process.chdir(workingFolder);
             cflintJarDownloadUrl = tl.getInput("cflintJarDownloadUrl", true);
-            console.log("cflint-jar download url: " + cflintJarDownloadUrl);
+            console.log("cflint-jar download url: ".concat(cflintJarDownloadUrl));
             cflintArguments = tl.getInput("cflintArguments");
             if (cflintArguments === undefined || cflintArguments === '') {
                 cflintArguments = "";
             }
-            console.log("arguments: " + cflintArguments);
+            console.log("arguments: ".concat(cflintArguments));
             try {
-                cflintDownloader_1.default(cflintJarDownloadUrl, function (error) {
+                (0, cflintDownloader_1.default)(cflintJarDownloadUrl, function (error) {
                     if (error) {
                         throw error;
                     }
-                    cflint_1.default(taskDisplayName, cflintArguments);
+                    (0, cflint_1.default)(taskDisplayName, cflintArguments);
                 });
             }
             catch (err) {
-                tl.setResult(tl.TaskResult.Failed, taskDisplayName + " failed");
+                tl.setResult(tl.TaskResult.Failed, "".concat(taskDisplayName, " failed"));
                 tl.error(err);
                 console.log(err);
             }

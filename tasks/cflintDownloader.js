@@ -19,7 +19,7 @@ var downloadCflint = function (cflintDownloadUrl, downloadFinishedCallback) {
             switch (downloadUrl.protocol) {
                 case "file:":
                     var downloadPath = url.fileURLToPath ? url.fileURLToPath(downloadUrl.href) : downloadUrl.href.slice(5);
-                    console.log("Copying file from '" + downloadPath + "'");
+                    console.log("Copying file from '".concat(downloadPath, "'"));
                     fs.copyFile(downloadPath, cflintJarFilename_1, function (err) { return downloadFinishedCallback(err); });
                     break;
                 case "http:":
@@ -27,7 +27,7 @@ var downloadCflint = function (cflintDownloadUrl, downloadFinishedCallback) {
                     download(downloadUrl.href).then(function (data) { return fs.writeFile(cflintJarFilename_1, data, function (err) { return downloadFinishedCallback(err); }); });
                     break;
                 default:
-                    console.log("Copying file from '" + downloadUrl.href + "'");
+                    console.log("Copying file from '".concat(downloadUrl.href, "'"));
                     fs.copyFile(downloadUrl.href, cflintJarFilename_1, function (err) { return downloadFinishedCallback(err); });
                     break;
             }
