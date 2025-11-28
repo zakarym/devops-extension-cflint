@@ -2,8 +2,8 @@
     "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
     "id": "b4d2dbe4-ed52-47a2-824d-50bedb38fbf1",
     "name": "cflint",
-    "friendlyName": "Static code analysis for CFML (a linter) for builds",
-    "description": "This extension uses the CFLint tool to scan CFML files and provide feedback on potential issues. The linter optionally takes rule configuration via a `.cflintrc` file.",
+    "friendlyName": "Static code analysis for CFML for builds",
+    "description": "This extension uses the cfLint tool to scan CFML files and provide feedback on potential issues. The linter optionally takes rule configuration via a `.cflintrc` file.",
     "author": "Josh Knutson",
     "helpMarkDown": "[More information](https://marketplace.visualstudio.com/items?itemName=joshknutsonextensions.devops-extension-cflint) [**CFLint** configuration](https://github.com/cflint/CFLint#folder-based-configuration)",
     "category": "Build",
@@ -18,7 +18,7 @@
     "version": {
         "Major": 1,
         "Minor": 3,
-        "Patch": 0
+        "Patch": 1
     },
     "minimumAgentVersion": "1.95.0",
     "groups": [
@@ -66,7 +66,7 @@
         }
     ],
     "execution": {
-        "Node": {
+        "Node20_1": {
             "target": "index.js"
         }
     }
