@@ -13,7 +13,7 @@
 
 Installation can be done using [Visual Studio MarketPlace](https://marketplace.visualstudio.com/items?itemName=JoshKnutsonExtensions.devops-extension-cflint).
 
-***Java must be installed on the maching at this time**
+***Java must be installed on the machine at this time**
 
 ## Source Code
 
@@ -39,6 +39,7 @@ Add the task to your build configuration:
 - task: cflint@1
   inputs:
     workingFolder: '' #starting folder to start scanning
+    javaOptions: '' #override default java memory allocation pool of -Xmx512m and add other java options
     cflintJarDownloadUrl: 'https://github.com/cflint/CFLint/releases/download/CFLint-1.5.0/CFLint-1.5.0-all.jar'
     cflintarguments: '' #extra arguments you want to pass along
 ```
@@ -46,6 +47,7 @@ Add the task to your build configuration:
 Arguments have to be specified:
 
 * By default the cfLint is running in the root of the repository, you can modify that in the advanced settings as the working folder task parameter.
+* by default the cfLint jar is provided a default java memory allocation pool of -Xmx512m, you can modify that in the advanced settings as the javaOptions task parameter.
 * By default the cfLint jar is downloaded from the url: `https://github.com/cflint/CFLint/releases/download/CFLint-1.5.0/CFLint-1.5.0-all.jar`:
   * You can change overwrite it to a different version if needed
   * But now file shares and local files are supported to such as:

@@ -41,7 +41,7 @@ var cflintDownloader_1 = require("./cflintDownloader");
 var cflint_1 = require("./cflint");
 function run() {
     return __awaiter(this, void 0, void 0, function () {
-        var taskDisplayName, workingFolder, cflintJarDownloadUrl, cflintArguments;
+        var taskDisplayName, workingFolder, javaOptions, cflintJarDownloadUrl, cflintArguments;
         return __generator(this, function (_a) {
             taskDisplayName = tl.getVariable("task.displayname");
             if (!taskDisplayName) {
@@ -55,6 +55,11 @@ function run() {
             console.log("working folder: ".concat(workingFolder));
             tl.cd(workingFolder);
             process.chdir(workingFolder);
+            javaOptions = tl.getInput("javaOptions");
+            if (javaOptions === undefined || javaOptions === '') {
+                javaOptions = "";
+            }
+            console.log("arguments: ".concat(javaOptions));
             cflintJarDownloadUrl = tl.getInput("cflintJarDownloadUrl", true);
             console.log("cflint-jar download url: ".concat(cflintJarDownloadUrl));
             cflintArguments = tl.getInput("cflintArguments");
@@ -67,7 +72,7 @@ function run() {
                     if (error) {
                         throw error;
                     }
-                    (0, cflint_1.default)(taskDisplayName, cflintArguments);
+                    (0, cflint_1.default)(taskDisplayName, javaOptions, cflintArguments);
                 });
             }
             catch (err) {

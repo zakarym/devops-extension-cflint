@@ -40,6 +40,14 @@
             "groupName": "advanced"
         },
         {
+            "name": "javaOptions",
+            "type": "string",
+            "label": "javaOptions",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "JAVA Options for the cflint jar, this will override the default java memory allocation pool of -Xmx512m."
+        },
+        {
             "name": "cflintJarDownloadUrl",
             "type": "string",
             "label": "Download url of cflint-jar",

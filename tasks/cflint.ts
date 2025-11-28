@@ -3,16 +3,19 @@ import * as process from "process";
 import * as path from "path";
 import * as fs from "fs";
 
-const executeCflintJar = (taskDisplayName: string, cflintJarArguments: string) => {
+const executeCflintJar = (taskDisplayName: string, javaOptions: string, cflintJarArguments: string) => {
     const workingFolder = process.cwd();
     const outputDirectory = workingFolder;
     //const outputDirectory = path.resolve(workingFolder, "cflint/output");
     //!fs.existsSync(outputDirectory) && fs.mkdirSync(outputDirectory);
     //const outputHTMLFileName = ${path.resolve(outputDirectory, outputFileName+'.html')};
+    if(javaOptions === undefined) {
+        javaOptions = "-Xmx512m";
+    }
     if(cflintJarArguments === undefined) {
         cflintJarArguments = "";
     }
-    const commandToExecute = `java -Xmx512m -jar ${path.resolve(workingFolder, "cflint.jar")} ${cflintJarArguments} -folder ${workingFolder}  -html -htmlfile ${path.resolve(outputDirectory, "coverage.html")} -text -textfile ${path.resolve(outputDirectory, "coverage.txt")} -json -jsonfile ${path.resolve(outputDirectory, "coverage.json")}`;
+    const commandToExecute = `java ${javaOptions} -jar ${path.resolve(workingFolder, "cflint.jar")} ${cflintJarArguments} -folder ${workingFolder}  -html -htmlfile ${path.resolve(outputDirectory, "coverage.html")} -text -textfile ${path.resolve(outputDirectory, "coverage.txt")} -json -jsonfile ${path.resolve(outputDirectory, "coverage.json")}`;
     console.log('Run Code Analysis');
     console.log(`Executing command: ${commandToExecute}`);
 

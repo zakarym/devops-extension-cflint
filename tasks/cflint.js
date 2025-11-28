@@ -4,16 +4,19 @@ var child_process = require("child_process");
 var process = require("process");
 var path = require("path");
 var fs = require("fs");
-var executeCflintJar = function (taskDisplayName, cflintJarArguments) {
+var executeCflintJar = function (taskDisplayName, javaOptions, cflintJarArguments) {
     var workingFolder = process.cwd();
     var outputDirectory = workingFolder;
     //const outputDirectory = path.resolve(workingFolder, "cflint/output");
     //!fs.existsSync(outputDirectory) && fs.mkdirSync(outputDirectory);
     //const outputHTMLFileName = ${path.resolve(outputDirectory, outputFileName+'.html')};
+    if (javaOptions === undefined) {
+        javaOptions = "-Xmx512m";
+    }
     if (cflintJarArguments === undefined) {
         cflintJarArguments = "";
     }
-    var commandToExecute = "java -Xmx512m -jar ".concat(path.resolve(workingFolder, "cflint.jar"), " ").concat(cflintJarArguments, " -folder ").concat(workingFolder, "  -html -htmlfile ").concat(path.resolve(outputDirectory, "coverage.html"), " -text -textfile ").concat(path.resolve(outputDirectory, "coverage.txt"), " -json -jsonfile ").concat(path.resolve(outputDirectory, "coverage.json"));
+    var commandToExecute = "java ".concat(javaOptions, " -jar ").concat(path.resolve(workingFolder, "cflint.jar"), " ").concat(cflintJarArguments, " -folder ").concat(workingFolder, "  -html -htmlfile ").concat(path.resolve(outputDirectory, "coverage.html"), " -text -textfile ").concat(path.resolve(outputDirectory, "coverage.txt"), " -json -jsonfile ").concat(path.resolve(outputDirectory, "coverage.json"));
     console.log('Run Code Analysis');
     console.log("Executing command: ".concat(commandToExecute));
     child_process.exec(commandToExecute, function (error, stdout) {

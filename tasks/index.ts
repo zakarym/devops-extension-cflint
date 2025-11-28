@@ -21,6 +21,12 @@ async function run (): Promise<void> {
 
     tl.cd(workingFolder);
     process.chdir(workingFolder);
+    
+    var javaOptions = tl.getInput("javaOptions");
+    if (javaOptions === undefined || javaOptions === '') {
+        javaOptions = "";
+    }
+    console.log(`arguments: ${javaOptions}`);
 
     const cflintJarDownloadUrl = tl.getInput("cflintJarDownloadUrl", true);
     console.log(`cflint-jar download url: ${cflintJarDownloadUrl}`);
@@ -39,7 +45,7 @@ async function run (): Promise<void> {
                     throw error;
                 }
 
-                executeCflint(taskDisplayName, cflintArguments);
+                executeCflint(taskDisplayName, javaOptions, cflintArguments);
             });
     } catch (err) {
         tl.setResult(tl.TaskResult.Failed, `${taskDisplayName} failed`);
